@@ -1,5 +1,10 @@
 package mini.com.kh.tm1.persistance;
 
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,40 +14,43 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 
+import javax.swing.JOptionPane;
+
 import mini.com.kh.tm1.model.vo.Person;
+import mini.com.kh.tm1.view.JoinPanel;
+import mini.com.kh.tm1.view.MainFrame;
 
 public class MailPersis {
 
-	HashMap<String,Person> pMap;
+	HashMap<String, Person> pMap;
 	File file;
-	
+	private Person p;
+
 	public MailPersis() {
-		pMap=new HashMap<String,Person>();
-		
-		 file=new File("person.dat");
-		
-		if(!file.exists()) { //파일이 없으면 
+		pMap = new HashMap<String, Person>();
+
+		file = new File("person.dat");
+
+		if (!file.exists()) { // 파일이 없으면
 			try {
 				file.createNewFile();// 파일 만들
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else {
-			if(file.length()==0) { //파일이 있는데 크기가 0인경우
-				
-			}else { //아닌경우
-				
-				try(ObjectInputStream ois=new ObjectInputStream(new FileInputStream(file))){
-					
-					while(true) {
-						Person p=(Person)ois.readObject();
-						pMap.put(p.getId(),p);
-						
+		} else {
+			if (file.length() == 0) { // 파일이 있는데 크기가 0인경우
+
+			} else { // 아닌경우
+
+				try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+
+					while (true) {
+						Person p = (Person) ois.readObject();
+						pMap.put(p.getId(), p);
+
 					}
-					
-					
-					
+
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -53,30 +61,23 @@ public class MailPersis {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-				
+
 			}
-			
-			
+
 		}
-		
-		
-		
-	}//생성자 끝
-	
+
+	}// 생성자 끝
+
 	public void fileSave() {
-		
-		
-		try(ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream(file))){
-		
-			for(String name: pMap.keySet()) {
-				
+
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
+
+			for (String name : pMap.keySet()) {
+
 				oos.writeObject(pMap.get(name));
-				
-				
-				
+
 			}
-		
+
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -85,7 +86,19 @@ public class MailPersis {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
+
+	// ----------------- 한희원 코드 시작 --------------------------
+
+	public boolean idCheck(String id) {
+
+		if (!pMap.containsKey(id)) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+
+	// --------------- 한희원 코드 끝 --------------------------------
+
 }
