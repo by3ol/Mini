@@ -9,16 +9,20 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 
+import javax.swing.JOptionPane;
+
 import mini.com.kh.tm1.model.vo.Person;
 
 public class MailPersis {
 
 	HashMap<String,Person> pMap;
+	
 	File file;
+
 	
 	public MailPersis() {
 		pMap=new HashMap<String,Person>();
-		
+	
 		 file=new File("person.dat");
 		
 		if(!file.exists()) { //파일이 없으면 
@@ -38,6 +42,7 @@ public class MailPersis {
 					while(true) {
 						Person p=(Person)ois.readObject();
 						pMap.put(p.getId(),p);
+						
 						
 					}
 					
@@ -76,7 +81,7 @@ public class MailPersis {
 				
 				
 			}
-		
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -85,7 +90,25 @@ public class MailPersis {
 			e.printStackTrace();
 		}
 	}
+//------------윤우진 코드 시작 ----------------
+	public int idpwCheck(String id, String pw) {
+	int result = 0;
+		if(!pMap.containsKey(id)) {
+		/*	if((pMap.get(id).getPw()).equals(pw)) {
+				result = 3;
+				return  result;
+		}else {
+			result = 2;
+			return result;
+		}
+		
+	}*/ }else {
+		result =1;
+		return result;
+	}
+		return result; 
 	
-	
+	}
+//-------------윤우진 코드 끝----------------
 	
 }

@@ -1,14 +1,17 @@
 package mini.com.kh.tm1.view;
 
-import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
+import mini.com.kh.tm1.controller.MailController;
+
+
 
 public class LoginPanel extends JPanel {
 	
@@ -16,7 +19,8 @@ public class LoginPanel extends JPanel {
 	JLabel title,idL,pwL;
 	JTextField idT,pwT;
 	JButton loginB,findIdB,findPwB,homeB;
-	
+	private MailController mc = new MailController();
+
 	public LoginPanel() {		
 		
 		this.setSize(550,560);
@@ -30,35 +34,36 @@ public class LoginPanel extends JPanel {
 
 		
 		 idL = new JLabel("ID  ");
-		 idL.setLocation(50,150);
+		 idL.setLocation(50,100);
 		 idL.setSize(400,40);
 		 idL.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		
 		
-		 idT = new JTextField(" ");
-		 idT.setLocation(170, 150);
+		 idT = new JTextField("");
+		 idT.setLocation(170, 100);
 		 idT.setSize(330,40);
 		 idT.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		
 		 pwL = new JLabel("Password  ");
-		 pwL.setLocation(50,200);
+		 pwL.setLocation(50,150);
 		 pwL.setSize(400,40);
 		 pwL.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		
-		 pwT = new JTextField("");
-		 pwT.setLocation(170, 200);
+		 pwT = new JPasswordField("");
+		 pwT.setLocation(170, 150);
 		 pwT.setSize(330,40);
 		 pwT.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-		
+		 
+		 
 		 loginB = new JButton("로그인 ");
-		 loginB.setLocation(50, 300);
+		 loginB.setLocation(50, 200);
 		 loginB.setSize(430, 40);
 		 loginB.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		 loginB.setCursor(new Cursor(Cursor.WAIT_CURSOR));
 		
 		
 		 findIdB = new JButton("아이디 찾기 ");
-		 findIdB.setLocation(50, 350);
+		 findIdB.setLocation(50, 250);
 		 findIdB.setSize(200, 40);
 		//폰트 : 맑은고딕, 볼드체, 크기는 30
 		 findIdB.setFont(new Font("맑은 고딕", Font.BOLD, 12));
@@ -66,7 +71,7 @@ public class LoginPanel extends JPanel {
 		 findIdB.setCursor(new Cursor(Cursor.WAIT_CURSOR)); 
 		
 		findPwB = new JButton("비밀번호 찾기 ");
-		findPwB.setLocation(280, 350);
+		findPwB.setLocation(280, 250);
 		findPwB.setSize(200, 40);
 		findPwB.setFont(new Font("맑은 고딕", Font.BOLD, 12));
 		findPwB.setCursor(new Cursor(Cursor.WAIT_CURSOR));
@@ -86,8 +91,7 @@ public class LoginPanel extends JPanel {
 		this.add(findPwB);
 		this.add(homeB);
 		
-		
-
+	
 	}
 
 	public JLabel getTitle() {
@@ -161,6 +165,7 @@ public class LoginPanel extends JPanel {
 	public void setHomeB(JButton homeB) {
 		this.homeB = homeB;
 	}
-
+	
+	
 
 }
