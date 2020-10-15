@@ -32,6 +32,7 @@ public class MailPersis {
 		file = new File("person.dat");
 
 		if (!file.exists()) { // 파일이 없으면
+
 			try {
 				file.createNewFile();// 파일 만들
 			} catch (IOException e) {
@@ -101,4 +102,25 @@ public class MailPersis {
 
 	// --------------- 한희원 코드 끝 --------------------------------
 
+//------------윤우진 코드 시작 ----------------
+	public int idpwCheck(String id, String pw) {
+	int result = 0;
+		if(!pMap.containsKey(id)) {
+		/*	if((pMap.get(id).getPw()).equals(pw)) {
+				result = 3;
+				return  result;
+		}else {
+			result = 2;
+			return result;
+		}
+		
+	}*/ }else {
+		result =1;
+		return result;
+	}
+		return result; 
+	
+	}
+//-------------윤우진 코드 끝----------------
+	
 }
